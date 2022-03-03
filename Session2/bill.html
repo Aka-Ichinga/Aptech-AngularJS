@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bill">
+    <head>
+        <meta charset="utf-8">
+        <title>Bil Calculator</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    </head>
+    <body ng-controller="billCntrl">
+        <div class="">
+            <p>Bill</p>
+            <p>Quantity: <input type="number" ng-model="qnty" ng-keyup="multiply()"></p>
+            <p>Cost: <input type="number" ng-model="cost" ng-keyup="multiply()"></p>
+            <p><strong>Total: </strong>${{total}} <button type="submit" ng-click="pay()">Pay</button></p>    
+        </div>
+        <script>
+            var bill = angular.module('bill', [])
+            bill.controller('billCntrl', function($scope){
+                $scope.multiply = function(){
+                    $scope.total = ($scope.qnty || 0) * ($scope.cost || 0)
+                }
+                $scope.pay = function(){
+                    if($scope.total){
+                        window.alert(`You have payed \$${$scope.total }`)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
